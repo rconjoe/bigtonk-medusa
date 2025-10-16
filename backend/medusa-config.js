@@ -160,6 +160,9 @@ const medusaConfig = {
         },
       ]
       : []),
+    {
+      resolve: "./src/modules/linktree",
+    },
   ],
   plugins: [
     ...(MEILISEARCH_HOST && MEILISEARCH_ADMIN_KEY
