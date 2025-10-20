@@ -1,5 +1,5 @@
 import { InferTypeOf } from "@medusajs/framework/types";
-import LinkRow from "../modules/linktree/models/linkrow";
+import Linkrow from "../modules/linktree/models/linkrow";
 import {
   createStep,
   createWorkflow,
@@ -9,7 +9,7 @@ import {
 import LinkTreeModuleService from "modules/linktree/service";
 import { LINKTREE_MODULE } from "modules/linktree";
 
-type LinkTreeRow = InferTypeOf<typeof LinkRow>;
+type LinkTreeRow = InferTypeOf<typeof Linkrow>;
 
 export type CreateLinkrowWorkflowInput = Omit<
   LinkTreeRow,
@@ -22,7 +22,7 @@ const createLinkrowStep = createStep(
     const linktreeModuleService: LinkTreeModuleService =
       container.resolve(LINKTREE_MODULE);
 
-    const linkrow = await linktreeModuleService.createLinkRows({
+    const linkrow = await linktreeModuleService.createLinkrows({
       ...linkrowInput,
     });
 
@@ -32,7 +32,7 @@ const createLinkrowStep = createStep(
     const linktreeModuleService: LinkTreeModuleService =
       container.resolve(LINKTREE_MODULE);
 
-    await linktreeModuleService.deleteLinkRows(linkrow.id);
+    await linktreeModuleService.deleteLinkrows(linkrow.id);
   },
 );
 

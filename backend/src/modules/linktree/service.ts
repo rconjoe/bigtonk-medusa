@@ -1,8 +1,8 @@
 import { MedusaService } from "@medusajs/framework/utils";
-import LinkRow from "./models/linkrow";
+import Linkrow from "./models/linkrow";
 
 class LinkTreeModuleService extends MedusaService({
-  LinkRow,
-}) {}
+  Linkrow,
+}) { }
 
 export default LinkTreeModuleService;

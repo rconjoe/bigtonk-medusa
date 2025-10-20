@@ -1,6 +1,6 @@
 import { model } from "@medusajs/framework/utils";
 
-const LinkRow = model.define("linkrow", {
+const Linkrow = model.define("linkrow", {
   id: model.id().primaryKey(),
   text: model.text(),
   href: model.text(),
@@ -12,4 +12,4 @@ const LinkRow = model.define("linkrow", {
   photo: model.text().nullable(),
 });
 
-export default LinkRow;
+export default Linkrow;
