@@ -22,7 +22,7 @@ export async function POST(
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
 
-  const { data } = await query.graph({
+  const { data: linkrows } = await query.graph({
     entity: "linkrow",
     fields: [
       "id",
@@ -35,5 +35,5 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
     ],
   });
 
-  res.json({ data });
+  res.json({ linkrows });
 }
