@@ -1,8 +1,17 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "esnext"
+    "module": "node16",
+    "jsx": "react",
+    "lib": [
+      "DOM",
+      "DOM.Iterable"
+    ]
   },
-  "include": ["."],
-  "exclude": ["**/*.spec.js"]
+  "include": [
+    "."
+  ],
+  "exclude": [
+    "**/*.spec.js"
+  ]
 }
