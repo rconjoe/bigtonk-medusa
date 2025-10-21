@@ -1,7 +1,7 @@
 import { model } from "@medusajs/framework/utils";
 
 const Video = model.define("video", {
-  id: model.id(),
+  id: model.id().primaryKey(),
   videoid: model.text(),
   type: model.text(),
   title: model.text(),
