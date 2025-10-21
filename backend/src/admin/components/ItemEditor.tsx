@@ -21,9 +21,13 @@ const ItemEditor: React.FC = () => {
   const [saving, setSaving] = useState<boolean>(false);
 
   useEffect(() => {
-    sdk.client.fetch("/linktree/linkrow").then((data) => {
-      setItems(data.linkrows);
-    });
+    try {
+      sdk.client.fetch("/linktree/linkrow").then((data) => {
+        setItems(data.linkrows);
+      });
+    } catch (err) {
+      alert("Fetching linkrows from /linktree/linkrow failed.");
+    }
   }, []);
 
   const handleEditClick = (item: Item) => {
