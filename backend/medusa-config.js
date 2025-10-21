@@ -163,6 +163,9 @@ const medusaConfig = {
     {
       resolve: "./src/modules/linktree",
     },
+    {
+      resolve: "./src/modules/youtube",
+    },
   ],
   plugins: [
     ...(MEILISEARCH_HOST && MEILISEARCH_ADMIN_KEY
