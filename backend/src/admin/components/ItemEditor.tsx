@@ -8,58 +8,22 @@ import {
   Text,
   Badge,
 } from "@medusajs/ui";
-import { XMark, CheckMini } from "@medusajs/icons";
+import { XMark, CheckMini, Spinner } from "@medusajs/icons";
+import { sdk } from "../../lib/sdk.js";
+import { UpdateLinkrowWorkflowInput } from "../../workflows/update-linkrow.js";
 
-// Define the interface for your data
-interface Item {
-  id: string;
-  text: string;
-  description: string;
-  href: string;
-  order: number;
-  active: boolean;
-  category: string;
-}
-
-// Mock data (replace with your actual database fetch)
-const mockData: Item[] = [
-  {
-    id: "01K7QAX0SC5B7RDD3K0EZWQM16",
-    text: "ERidePro - Free parts with purchase!",
-    description: "Code: TONK",
-    href: "https://eridepros.com",
-    order: 1,
-    active: true,
-    category: "emoto",
-  },
-  {
-    id: "01K7QAX0SC5B7RDD3K0EZWQM17",
-    text: "TechGadgets - New arrivals!",
-    description: "Save 10% on all electronics",
-    href: "https://techgadgets.com",
-    order: 2,
-    active: true,
-    category: "electronics",
-  },
-  {
-    id: "01K7QAX0SC5B7RDD3K0EZWQM18",
-    text: "Home Decor Co - Flash Sale!",
-    description: "Up to 50% off",
-    href: "https://homedecor.com",
-    order: 3,
-    active: false,
-    category: "homegoods",
-  },
-];
+type Item = UpdateLinkrowWorkflowInput;
 
 const ItemEditor: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
   const [editedItem, setEditedItem] = useState<Item | null>(null);
+  const [saving, setSaving] = useState<boolean>(false);
 
-  // Simulate fetching data on component mount
   useEffect(() => {
-    setItems(mockData);
+    sdk.client.fetch("/linktree/linkrow").then((data) => {
+      setItems(data.linkrows);
+    });
   }, []);
 
   const handleEditClick = (item: Item) => {
@@ -69,13 +33,29 @@ const ItemEditor: React.FC = () => {
 
   const handleSaveClick = (id: string) => {
     if (editedItem) {
+      setSaving(true);
       setItems((prevItems) =>
         prevItems.map((item) => (item.id === id ? editedItem : item)),
       );
-      setEditingItemId(null);
-      setEditedItem(null);
-      // In a real application, you'd send editedItem to your backend here
-      console.log("Saved item:", editedItem);
+      try {
+        sdk.client
+          .fetch(`/linktree/update`, {
+            method: "POST",
+            body: editedItem,
+          })
+          .then(() => {
+            setSaving(false);
+            setEditingItemId(null);
+            setEditedItem(null);
+          });
+      } catch (err) {
+        setSaving(false);
+        alert(
+          "The API call to /linktree/update failed. Refresh the page to check for inconsistencies.",
+        );
+        setEditingItemId(null);
+        setEditedItem(null);
+      }
     }
   };
 
@@ -118,7 +98,7 @@ const ItemEditor: React.FC = () => {
 
   return (
     <Container className="p-4">
-      <Text className="mb-4 text-xl font-semibold">Database Item Editor</Text>
+      <Text className="mb-4 text-xl font-semibold">Linktree Links Editor</Text>
 
       {items.length === 0 ? (
         <Text>No items to display.</Text>
@@ -186,7 +166,7 @@ const ItemEditor: React.FC = () => {
                         variant="transparent"
                         onClick={() => handleSaveClick(item.id)}
                       >
-                        <CheckMini />
+                        {saving ? <Spinner /> : <CheckMini />}
                       </Button>
                       <Button
                         variant="transparent"
