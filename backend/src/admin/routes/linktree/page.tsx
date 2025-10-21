@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { defineRouteConfig } from "@medusajs/admin-sdk";
 import { Link } from "@medusajs/icons";
 import { Container } from "@medusajs/ui";
-import { sdk } from "../../../lib/sdk.js";
+import { sdk } from "../../lib/sdk.js";
 import ItemEditor from "../../components/ItemEditor";
 
 const LinktreePage = () => {

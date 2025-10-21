@@ -9,7 +9,7 @@ import {
   Badge,
 } from "@medusajs/ui";
 import { XMark, CheckMini, Plus, Spinner } from "@medusajs/icons"; // Added Plus icon
-import { sdk } from "../../lib/sdk.js";
+import { sdk } from "../lib/sdk.js";
 import { UpdateLinkrowWorkflowInput } from "../../workflows/update-linkrow.js";
 
 type Item = UpdateLinkrowWorkflowInput;
