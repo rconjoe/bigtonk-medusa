@@ -1,15 +1,12 @@
 import Medusa from "@medusajs/js-sdk";
 
-const IS_DEV = import.meta.env.NODE_ENV === "development";
+// const IS_DEV = "development";
 
-const BACKEND_URL =
-  import.meta.env.BACKEND_PUBLIC_URL ??
-  import.meta.env.RAILWAY_PUBLIC_DOMAIN ??
-  "http://localhost:9000";
+const BACKEND_URL = "https://medusa.bigtonk.com";
 
 export const sdk = new Medusa({
   baseUrl: BACKEND_URL,
-  debug: IS_DEV,
+  debug: false,
   auth: {
     type: "session",
   },
