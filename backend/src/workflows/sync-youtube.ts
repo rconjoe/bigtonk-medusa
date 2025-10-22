@@ -81,7 +81,7 @@ const fetchVideosStep = createStep(
     }
 
     // 3. get content details for each video
-    const videoDetailsRes = youtube.videos.list({
+    const videoDetailsRes = await youtube.videos.list({
       // @ts-ignore
       id: videoIds.join(","),
       part: ["snippet", "contentDetails"],
