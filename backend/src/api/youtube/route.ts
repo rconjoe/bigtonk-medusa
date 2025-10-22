@@ -17,3 +17,5 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
   const videos = await syncYoutubeWorkflow(req.scope).run();
   res.json(videos);
 }
+
+export const CORS = false;
