@@ -4,9 +4,9 @@ import {
   StepResponse,
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk";
-import YoutubeModuleService from "modules/youtube/service";
-import { YOUTUBE_MODULE } from "modules/youtube";
-import { YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID } from "lib/constants";
+import YoutubeModuleService from "../modules/youtube/service";
+import { YOUTUBE_MODULE } from "../modules/youtube";
+import { YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID } from "../lib/constants";
 import { google } from "googleapis";
 
 export type FetchVideosStepInput = {
