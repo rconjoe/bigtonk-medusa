@@ -1,5 +1,6 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
+import { syncYoutubeWorkflow } from "workflows/sync-youtube";
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
@@ -10,4 +11,9 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   });
 
   res.json({ videos });
+}
+
+export async function POST(req: MedusaRequest, res: MedusaResponse) {
+  const videos = await syncYoutubeWorkflow(req.scope).run();
+  res.json(videos);
 }
