@@ -6,7 +6,10 @@ import Medusa from "@medusajs/js-sdk";
 const IS_DEV = process.env.NODE_ENV === "development";
 
 // @ts-ignore
-const BACKEND_URL = import.meta.env.VITE_RAILWAY_PUBLIC_DOMAIN;
+let BACKEND_URL = import.meta.env.VITE_RAILWAY_PUBLIC_DOMAIN;
+if (BACKEND_URL !== "http://localhost:9000") {
+  BACKEND_URL = `https://${BACKEND_URL}`;
+}
 
 export const sdk = new Medusa({
   baseUrl: BACKEND_URL,
