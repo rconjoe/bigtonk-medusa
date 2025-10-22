@@ -109,3 +109,9 @@ export const WORKER_MODE =
  * Disable Admin
  */
 export const SHOULD_DISABLE_ADMIN = process.env.MEDUSA_DISABLE_ADMIN === "true";
+
+/**
+ * Youtube sync stuff
+ */
+export const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
+export const YOUTUBE_CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
