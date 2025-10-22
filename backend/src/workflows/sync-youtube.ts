@@ -36,7 +36,7 @@ function parseYouTubeDuration(isoDuration: string): number {
 
 const fetchVideosStep = createStep(
   "fetch-videos",
-  async (youtubeInput: FetchVideosStepInput, { container }) => {
+  async (youtubeInput: FetchVideosStepInput) => {
     console.log(`[${new Date().toISOString()}] Starting Youtube data sync...`);
     const youtube = google.youtube({
       version: "v3",
