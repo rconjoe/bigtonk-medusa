@@ -128,7 +128,7 @@ const fetchVideosStep = createStep(
     // Separate shorts and videos and apply limits
     for (const video of allUploadedVideos) {
       if (
-        video.durationSeconds <= 60 &&
+        video.durationSeconds <= 180 &&
         shorts.length < youtubeInput.maxRecentShorts
       ) {
         shorts.push(video);
