@@ -128,11 +128,14 @@ const fetchVideosStep = createStep(
     // Separate shorts and videos and apply limits
     for (const video of allUploadedVideos) {
       if (
-        video.durationSeconds <= 180 &&
+        video.durationSeconds < 180 &&
         shorts.length < youtubeInput.maxRecentShorts
       ) {
         shorts.push(video);
-      } else if (videos.length < youtubeInput.maxRecentVideos) {
+      } else if (
+        video.durationSeconds >= 180 && // <--- Add this condition
+        videos.length < youtubeInput.maxRecentVideos
+      ) {
         videos.push(video);
       }
       // If both lists are full, we can stop processing further
@@ -143,6 +146,9 @@ const fetchVideosStep = createStep(
         break;
       }
     }
+
+    console.log(shorts);
+    console.log(videos);
 
     // Assign 'order' based on their sorted position (1-indexed)
     const recentShortsWithOrder = shorts.map((s, index) => ({
