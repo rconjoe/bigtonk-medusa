@@ -48,6 +48,7 @@ const createStripeCheckoutStep = createStep(
       shipping_address_collection: {
         allowed_countries: ["US"],
       },
+      allow_promotion_codes: true,
       line_items,
       mode: "payment",
       ui_mode: "embedded",
