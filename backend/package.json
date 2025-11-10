@@ -45,6 +45,7 @@
     "medusajs-launch-utils": "^0.0.17",
     "minio": "^8.0.3",
     "pg": "^8.13.1",
+    "raw-body": "^3.0.1",
     "resend": "4.0.1",
     "stripe": "^19.1.0",
     "ulid": "^2.3.0"
