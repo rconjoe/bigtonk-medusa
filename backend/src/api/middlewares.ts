@@ -8,6 +8,12 @@ import { ConfigModule } from "@medusajs/framework/types";
 import { parseCorsOrigins } from "@medusajs/framework/utils";
 import cors from "cors";
 
+const rawBodyMiddleware = async (
+  req: MedusaRequest,
+  res: MedusaResponse,
+  next: MedusaNextFunction,
+) => { };
+
 export default defineMiddlewares({
   routes: [
     {
@@ -38,6 +44,20 @@ export default defineMiddlewares({
     },
     {
       matcher: "/checkout*",
+      middlewares: [
+        (req: MedusaRequest, res: MedusaResponse, next: MedusaNextFunction) => {
+          const configModule: ConfigModule = req.scope.resolve("configModule");
+
+          return cors({
+            origin: parseCorsOrigins(configModule.projectConfig.http.storeCors),
+            credentials: true,
+          })(req, res, next);
+        },
+      ],
+    },
+    {
+      matcher: "/order/complete*",
+      bodyParser: { preserveRawBody: true },
       middlewares: [
         (req: MedusaRequest, res: MedusaResponse, next: MedusaNextFunction) => {
           const configModule: ConfigModule = req.scope.resolve("configModule");
