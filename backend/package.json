@@ -44,6 +44,7 @@
     "googleapis": "^164.1.0",
     "medusajs-launch-utils": "^0.0.17",
     "minio": "^8.0.3",
+    "next": "15.1.11",
     "pg": "^8.13.1",
     "raw-body": "^3.0.1",
     "resend": "4.0.1",
